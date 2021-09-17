@@ -8,7 +8,7 @@ from chapter3.helper import (
     little_endian_to_int,
     read_varint,
 )
-from op import (
+from chapter5.op import (
     OP_CODE_FUNCTIONS,
     OP_CODE_NAMES,
 )
@@ -37,6 +37,9 @@ class Script:
             else:
                 result.append(cmd.hex())
         return " ".join(result)
+
+    def __add__(self, other):
+        return Script(self.cmds + other.cmds)
 
     @classmethod
     def parse(cls, s):
